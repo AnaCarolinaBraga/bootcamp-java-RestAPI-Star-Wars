@@ -32,7 +32,7 @@ public class JediRepositoryImpl implements JediRepository {
     }
 
     @Override
-    public Optional<Jedi> findById(int id) {
+    public Optional<Jedi> findById(Integer id) {
         try {
             Jedi jedi = jdbcTemplate.queryForObject("SELECT * FROM jedis WHERE id = ?", new Object[]{id},
                     (rs, rowNum) -> {
@@ -82,13 +82,13 @@ public class JediRepositoryImpl implements JediRepository {
 
         logger.info("Inserting Jedi intro database, generated id is: {}", newId);
 
-        jedi.setId((int) newId);
+        jedi.setId((Integer) newId);
 
         return jedi;
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(Integer id) {
         return jdbcTemplate.update("DELETE FROM jedis WHERE id = ?", id) == 1;
     }
 }

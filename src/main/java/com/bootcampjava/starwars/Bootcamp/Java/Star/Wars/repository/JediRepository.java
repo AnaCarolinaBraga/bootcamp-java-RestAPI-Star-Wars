@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface JediRepository {
 
     //Optional é pq o retorno dele é opcional, pode retornar uma lista, um objeto...
-    Optional<Jedi> findById(int id);
+    Optional<Jedi> findById(Integer id);
 
     //O retorno aqui é uma lista
     List<Jedi> findAll();
@@ -17,7 +17,7 @@ public interface JediRepository {
 
     Jedi save(Jedi jedi);
 
-    boolean delete(int id);
+    boolean delete(Integer id);
 
 }
 
