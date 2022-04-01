@@ -16,7 +16,7 @@ public class Jedi {
         this.version = version;
     }
 
-    public jedi(String name, int strength){
+    public Jedi(String name, int strength) {
         this.name = name;
         this.strength = strength;
     }

@@ -42,7 +42,7 @@ public class JediRepositoryImpl implements JediRepository {
                         p.setStrength(rs.getInt("strength"));
                         p.setVersion(rs.getInt("version"));
                         return p;
-                    })
+                    });
             return Optional.of(jedi);
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
@@ -51,24 +51,24 @@ public class JediRepositoryImpl implements JediRepository {
 
     @Override
     public List<Jedi> findAll() {
-        return jdbcTemplate.queryForObject("SELECT * FROM jedis",
-                (rs, rowNum) -> {
-                    Jedi p = new Jedi();
-                    p.setId(rs.getInt("Id");
-                    p.setName(rs.getString("name"));
-                    p.setStrength(rs.getInt("strength"));
-                    p.setVersion(rs.getInt("version"));
-                    return p;
-                }
+        return jdbcTemplate.query("SELECT * FROM jedis",
+                (rs, rowNumber) -> {
+                    Jedi jedi = new Jedi();
+                    jedi.setId(rs.getInt("id"));
+                    jedi.setName(rs.getString("name"));
+                    jedi.setStrength(rs.getInt("strength"));
+                    jedi.setVersion(rs.getInt("version"));
+                    return jedi;
+                });
     }
 
     @Override
     public boolean update(Jedi jedi) {
-        return jdbcTemplate.queryForObject("UPDATE jedis SET name = ?, strength = ?, version = ? WHERE id = ?", new Object[]{id},
-                jedi.getName();
-        jedi.getStrength();
-        jedi.getVersion();
-        jedi.getId()) ==1;
+        return jdbcTemplate.update("UPDATE jedis SET name = ?, strength = ?, version = ? WHERE id = ?",
+                jedi.getName(),
+                jedi.getStrength(),
+                jedi.getVersion(),
+                jedi.getId()) == 1;
     }
 
     @Override
